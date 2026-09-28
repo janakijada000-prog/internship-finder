@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Internship Details - InternHub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f8fc;
+            color: #1f2937;
+        }
+
+        nav {
+            height: 70px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6c4df6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+        }
+
+        .nav-links a:hover {
+            color: #6c4df6;
+        }
+
+        .signup {
+            background-color: #6c4df6;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #6c4df6;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .details-card {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .company {
+            color: #6c4df6;
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            background-color: #f1efff;
+            color: #5b42d8;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .stipend {
+            color: #14965b;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            margin-top: 30px;
+        }
+
+        .content h2 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .content p {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .content ul {
+            margin-left: 20px;
+            color: #6b7280;
+            line-height: 2;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 35px;
+        }
+
+        .apply {
+            background-color: #6c4df6;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .save {
+            background-color: white;
+            color: #6c4df6;
+            border: 1px solid #6c4df6;
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .apply:hover {
+            background-color: #5635e8;
+        }
+
+        .save:hover {
+            background-color: #f1efff;
+        }
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .details-card {
+                padding: 25px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="logo">
+            InternHub
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="internships.html">
+                Internships
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+        </div>
+
+        <a href="signup.html">
+            <button class="signup">
+                Sign Up
+            </button>
+        </a>
+
+    </nav>
+
+
+    <!-- Main -->
+
+    <main class="container">
+
+        <a
+            href="internships.html"
+            class="back"
+        >
+            ← Back to Internships
+        </a>
+
+
+        <div class="details-card">
+
+            <!-- Company -->
+
+            <div
+                class="company"
+                id="company"
+            >
+                Company
+            </div>
+
+
+            <!-- Title -->
+
+            <h1 id="title">
+                Internship
+            </h1>
+
+
+            <!-- Information -->
+
+            <div class="info">
+
+                <span
+                    class="tag"
+                    id="field"
+                >
+                    💻 Field
+                </span>
+
+                <span
+                    class="tag"
+                    id="location"
+                >
+                    📍 Location
+                </span>
+
+                <span
+                    class="tag"
+                    id="duration"
+                >
+                    ⏱ Duration
+                </span>
+
+                <span
+                    class="tag"
+                >
+                    🎓 Students
+                </span>
+
+            </div>
+
+
+            <div
+                class="stipend"
+                id="pay"
+            >
+                💰 Stipend
+            </div>
+
+
+            <!-- About -->
+
+            <div class="content">
+
+                <h2>
+                    About the Internship
+                </h2>
+
+                <p id="about">
+
+                    Join this company as an intern and
+                    gain practical experience by working
+                    on real-world projects. You will work
+                    with experienced professionals and
+                    develop skills that can help you build
+                    your career.
+
+                </p>
+
+
+                <!-- Responsibilities -->
+
+                <h2>
+                    Responsibilities
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Work on real-world projects
+                    </li>
+
+                    <li>
+                        Write clean and efficient code
+                    </li>
+
+                    <li>
+                        Collaborate with team members
+                    </li>
+
+                    <li>
+                        Test and improve your work
+                    </li>
+
+                    <li>
+                        Participate in team meetings
+                    </li>
+
+                </ul>
+
+                <br>
+
+
+                <!-- Skills -->
+
+                <h2>
+                    Required Skills
+                </h2>
+
+                <ul id="skillsList">
+
+                </ul>
+
+                <br>
+
+
+                <!-- Eligibility -->
+
+                <h2>
+                    Eligibility
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Currently pursuing a college degree
+                    </li>
+
+                    <li>
+                        Basic knowledge related to the internship
+                    </li>
+
+                    <li>
+                        Students from relevant branches
+                    </li>
+
+                </ul>
+
+
+                <!-- Buttons -->
+
+                <div class="buttons">
+
+                    <button
+                        class="apply"
+                        onclick="applyNow()"
+                    >
+                        Apply Now
+                    </button>
+
+
+                    <button
+                        class="save"
+                        onclick="saveInternship()"
+                        id="saveButton"
+                    >
+                        ♡ Save Internship
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /* =========================
+           GET SELECTED INTERNSHIP
+        ========================= */
+
+        let selectedInternship =
+            JSON.parse(
+                localStorage.getItem(
+                    "selectedInternship"
+                )
+            );
+
+
+        /*
+           If no internship was selected,
+           use TechNova as default.
+        */
+
+        if (!selectedInternship) {
+
+            selectedInternship = {
+
+                id: 1,
+
+                title:
+                    "Software Development Intern",
+
+                company:
+                    "TechNova",
+
+                field:
+                    "Software Development",
+
+                mode:
+                    "Remote",
+
+                location:
+                    "Remote",
+
+                pay:
+                    "₹20,000 / month",
+
+                duration:
+                    "3 months",
+
+                skills:
+                    "Java • SQL • Git"
+
+            };
+
+        }
+
+
+        /* =========================
+           DISPLAY INFORMATION
+        ========================= */
+
+        document
+            .getElementById("company")
+            .textContent =
+            selectedInternship.company;
+
+
+        document
+            .getElementById("title")
+            .textContent =
+            selectedInternship.title;
+
+
+        document
+            .getElementById("field")
+            .textContent =
+            "💻 " +
+            selectedInternship.field;
+
+
+        document
+            .getElementById("location")
+            .textContent =
+            "📍 " +
+            selectedInternship.location;
+
+
+        document
+            .getElementById("duration")
+            .textContent =
+            "⏱ " +
+            selectedInternship.duration;
+
+
+        document
+            .getElementById("pay")
+            .textContent =
+            "💰 " +
+            selectedInternship.pay;
+
+
+        /* =========================
+           ABOUT TEXT
+        ========================= */
+
+        document
+            .getElementById("about")
+            .textContent =
+
+            "Join " +
+            selectedInternship.company +
+            " as a " +
+            selectedInternship.title +
+            " and gain practical experience by working " +
+            "on real-world projects. You will work with " +
+            "experienced professionals and develop skills " +
+            "that can help you build your career.";
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        let skillsList =
+            document.getElementById(
+                "skillsList"
+            );
+
+
+        let skills =
+            selectedInternship.skills
+                .split("•");
+
+
+        skills.forEach(
+            function(skill) {
+
+                let li =
+                    document.createElement(
+                        "li"
+                    );
+
+                li.textContent =
+                    skill.trim();
+
+                skillsList.appendChild(
+                    li
+                );
+
+            }
+        );
+
+
+        /* =========================
+           APPLY
+        ========================= */
+
+        function applyNow() {
+
+            window.location.href =
+                "apply.html";
+
+        }
+
+
+        /* =========================
+           SAVE INTERNSHIP
+        ========================= */
+
+        function saveInternship() {
+
+            let savedInternships =
+                JSON.parse(
+                    localStorage.getItem(
+                        "savedInternships"
+                    ) || "[]"
+                );
+
+
+            let internshipName =
+                selectedInternship.title;
+
+
+            if (
+                savedInternships.includes(
+                    internshipName
+                )
+            ) {
+
+                savedInternships =
+                    savedInternships.filter(
+                        function(name) {
+
+                            return name !==
+                                internshipName;
+
+                        }
+                    );
+
+                document
+                    .getElementById(
+                        "saveButton"
+                    )
+                    .textContent =
+                    "♡ Save Internship";
+
+                alert(
+                    "Internship removed from saved internships."
+                );
+
+            } else {
+
+                savedInternships.push(
+                    internshipName
+                );
+
+                document
+                    .getElementById(
+                        "saveButton"
+                    )
+                    .textContent =
+                    "♥ Saved";
+
+                alert(
+                    "Internship saved successfully ❤️"
+                );
+
+            }
+
+
+            localStorage.setItem(
+                "savedInternships",
+                JSON.stringify(
+                    savedInternships
+                )
+            );
+
+        }
+
+
+        /* =========================
+           CHECK SAVED STATUS
+        ========================= */
+
+        let savedInternships =
+            JSON.parse(
+                localStorage.getItem(
+                    "savedInternships"
+                ) || "[]"
+            );
+
+
+        if (
+            savedInternships.includes(
+                selectedInternship.title
+            )
+        ) {
+
+            document
+                .getElementById(
+                    "saveButton"
+                )
+                .textContent =
+                "♥ Saved";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

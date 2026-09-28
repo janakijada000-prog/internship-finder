@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Apply for Internship - InternHub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7fb;
+            color: #222;
+        }
+
+        nav {
+            min-height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6c4df6;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #444;
+            margin-left: 25px;
+        }
+
+        .container {
+            width: 700px;
+            max-width: 92%;
+            margin: 45px auto;
+        }
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-card h1 {
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .internship-info {
+            background: #f1efff;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .internship-info h3 {
+            color: #6c4df6;
+            margin-bottom: 5px;
+        }
+
+        .internship-info p {
+            color: #555;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #6c4df6;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .optional {
+            color: #777;
+            font-weight: normal;
+            font-size: 12px;
+        }
+
+        .help-text {
+            display: block;
+            margin-top: 7px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #6c4df6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #5638d8;
+        }
+
+        .submit-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #6c4df6;
+            text-decoration: none;
+        }
+
+        #successMessage {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f8ef;
+            color: #16804b;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 30px;
+            background: #181526;
+            color: #aaa;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 12px 5%;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            nav a {
+                margin-left: 10px;
+                font-size: 13px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            .form-card h1 {
+                font-size: 27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            InternHub
+        </div>
+
+        <div>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="internships.html">
+                Internships
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- APPLICATION FORM -->
+
+    <div class="container">
+
+        <div class="form-card">
+
+            <h1>
+                Apply for Internship
+            </h1>
+
+            <p class="subtitle">
+                Complete the form below to submit your application.
+            </p>
+
+
+            <!-- SELECTED INTERNSHIP -->
+
+            <div class="internship-info">
+
+                <h3 id="internshipName">
+                    Internship
+                </h3>
+
+                <p id="companyName">
+                    Company
+                </p>
+
+                <p
+                    id="internshipDetails"
+                    style="margin-top:8px;"
+                >
+                </p>
+
+            </div>
+
+
+            <form id="applicationForm">
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="applicantName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="applicantEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- COLLEGE -->
+
+                <div class="form-group">
+
+                    <label>
+                        College Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="applicantCollege"
+                        placeholder="Enter your college name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- COURSE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Course
+                    </label>
+
+                    <input
+                        type="text"
+                        id="applicantCourse"
+                        placeholder="Example: B.Tech CSE"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- YEAR -->
+
+                <div class="form-group">
+
+                    <label>
+                        Current Year
+                    </label>
+
+                    <select
+                        id="applicantYear"
+                        required
+                    >
+
+                        <option value="">
+                            Select Year
+                        </option>
+
+                        <option value="1st Year">
+                            1st Year
+                        </option>
+
+                        <option value="2nd Year">
+                            2nd Year
+                        </option>
+
+                        <option value="3rd Year">
+                            3rd Year
+                        </option>
+
+                        <option value="4th Year">
+                            4th Year
+                        </option>
+
+                        <option value="Postgraduate">
+                            Postgraduate
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- RESUME - OPTIONAL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Resume Link
+                        <span class="optional">
+                            (Optional)
+                        </span>
+                    </label>
+
+                    <input
+                        type="url"
+                        id="resume"
+                        placeholder="Paste your Google Drive / resume link if you have one"
+                    >
+
+                    <small class="help-text">
+                        Don't have a resume yet? No problem. You can apply without one.
+                    </small>
+
+                </div>
+
+
+                <!-- COVER LETTER -->
+
+                <div class="form-group">
+
+                    <label>
+                        Why should we select you?
+                    </label>
+
+                    <textarea
+                        id="coverLetter"
+                        placeholder="Write a short introduction about yourself, your skills and why you are interested in this internship."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Submit Application
+                </button>
+
+
+            </form>
+
+
+            <!-- SUCCESS -->
+
+            <div id="successMessage">
+
+                🎉 Application submitted successfully!
+
+            </div>
+
+
+            <a
+                href="internships.html"
+                class="back-btn"
+            >
+                ← Back to Internships
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 InternHub
+        </p>
+
+        <p>
+            Learn • Apply • Grow
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+
+        /* =========================
+           GET SELECTED INTERNSHIP
+           ========================= */
+
+        let selectedInternship =
+            JSON.parse(
+                localStorage.getItem(
+                    "selectedInternship"
+                )
+            );
+
+
+        /*
+            If the user directly opens
+            apply.html without selecting
+            an internship, use TechNova.
+        */
+
+        if (!selectedInternship) {
+
+            selectedInternship = {
+
+                title:
+                    "Software Development Intern",
+
+                company:
+                    "TechNova",
+
+                field:
+                    "Software Development",
+
+                mode:
+                    "Remote",
+
+                location:
+                    "Remote",
+
+                pay:
+                    "₹20,000 / month",
+
+                duration:
+                    "3 months",
+
+                skills:
+                    "Java • SQL • Git"
+
+            };
+
+        }
+
+
+        /* =========================
+           DISPLAY INTERNSHIP
+           ========================= */
+
+        document
+            .getElementById(
+                "internshipName"
+            )
+            .textContent =
+            selectedInternship.title;
+
+
+        document
+            .getElementById(
+                "companyName"
+            )
+            .textContent =
+            selectedInternship.company;
+
+
+        document
+            .getElementById(
+                "internshipDetails"
+            )
+            .textContent =
+            selectedInternship.field +
+            " • " +
+            selectedInternship.location +
+            " • " +
+            selectedInternship.mode +
+            " • " +
+            selectedInternship.duration +
+            " • " +
+            selectedInternship.pay;
+
+
+        /* =========================
+           LOAD STUDENT INFORMATION
+           ========================= */
+
+        let studentName =
+            localStorage.getItem(
+                "studentName"
+            );
+
+        let studentEmail =
+            localStorage.getItem(
+                "studentEmail"
+            );
+
+        let studentCollege =
+            localStorage.getItem(
+                "studentCollege"
+            );
+
+        let studentCourse =
+            localStorage.getItem(
+                "studentCourse"
+            );
+
+        let studentYear =
+            localStorage.getItem(
+                "studentYear"
+            );
+
+
+        /* =========================
+           AUTO FILL FORM
+           ========================= */
+
+        if (studentName) {
+
+            document
+                .getElementById(
+                    "applicantName"
+                )
+                .value =
+                studentName;
+
+        }
+
+
+        if (studentEmail) {
+
+            document
+                .getElementById(
+                    "applicantEmail"
+                )
+                .value =
+                studentEmail;
+
+        }
+
+
+        if (studentCollege) {
+
+            document
+                .getElementById(
+                    "applicantCollege"
+                )
+                .value =
+                studentCollege;
+
+        }
+
+
+        if (studentCourse) {
+
+            document
+                .getElementById(
+                    "applicantCourse"
+                )
+                .value =
+                studentCourse;
+
+        }
+
+
+        if (studentYear) {
+
+            document
+                .getElementById(
+                    "applicantYear"
+                )
+                .value =
+                studentYear;
+
+        }
+
+
+        /* =========================
+           SUBMIT APPLICATION
+           ========================= */
+
+        document
+            .getElementById(
+                "applicationForm"
+            )
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    /* CREATE APPLICATION */
+
+                    let application = {
+
+                        internship:
+                            selectedInternship.title,
+
+                        company:
+                            selectedInternship.company,
+
+                        field:
+                            selectedInternship.field,
+
+                        location:
+                            selectedInternship.location,
+
+                        mode:
+                            selectedInternship.mode,
+
+                        name:
+                            document
+                                .getElementById(
+                                    "applicantName"
+                                )
+                                .value,
+
+                        email:
+                            document
+                                .getElementById(
+                                    "applicantEmail"
+                                )
+                                .value,
+
+                        phone:
+                            document
+                                .getElementById(
+                                    "phone"
+                                )
+                                .value,
+
+                        college:
+                            document
+                                .getElementById(
+                                    "applicantCollege"
+                                )
+                                .value,
+
+                        course:
+                            document
+                                .getElementById(
+                                    "applicantCourse"
+                                )
+                                .value,
+
+                        year:
+                            document
+                                .getElementById(
+                                    "applicantYear"
+                                )
+                                .value,
+
+                        /*
+                            Resume is optional.
+                            If empty, save "Not provided".
+                        */
+
+                        resume:
+                            document
+                                .getElementById(
+                                    "resume"
+                                )
+                                .value ||
+                            "Not provided",
+
+                        coverLetter:
+                            document
+                                .getElementById(
+                                    "coverLetter"
+                                )
+                                .value,
+
+                        status:
+                            "Applied"
+
+                    };
+
+
+                    /* GET OLD APPLICATIONS */
+
+                    let applications =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "applications"
+                            ) || "[]"
+                        );
+
+
+                    /* ADD NEW APPLICATION */
+
+                    applications.push(
+                        application
+                    );
+
+
+                    /* SAVE APPLICATIONS */
+
+                    localStorage.setItem(
+                        "applications",
+                        JSON.stringify(
+                            applications
+                        )
+                    );
+
+
+                    /* SHOW SUCCESS */
+
+                    document
+                        .getElementById(
+                            "successMessage"
+                        )
+                        .style.display =
+                        "block";
+
+
+                    /* DISABLE BUTTON */
+
+                    document
+                        .querySelector(
+                            ".submit-btn"
+                        )
+                        .textContent =
+                        "Application Submitted ✓";
+
+
+                    document
+                        .querySelector(
+                            ".submit-btn"
+                        )
+                        .disabled =
+                        true;
+
+
+                    /* GO TO DASHBOARD */
+
+                    setTimeout(
+                        function() {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        },
+                        1500
+                    );
+
+                }
+            );
+
+
+    </script>
+
+
+</body>
+
+</html>

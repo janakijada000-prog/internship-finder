@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Internships - InternHub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f7fb;
+            color: #222;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            min-height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #6847f5;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #444;
+            margin-left: 25px;
+        }
+
+        nav a:hover {
+            color: #6847f5;
+        }
+
+        .signup {
+            background: #6847f5;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: linear-gradient(
+                120deg,
+                #f2efff,
+                #ffffff
+            );
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 17px;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 1120px;
+            max-width: 92%;
+            margin: 30px auto;
+        }
+
+        /* FILTER BOX */
+
+        .filter-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.06);
+            margin-bottom: 30px;
+        }
+
+        .search {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+
+        /* RESULT */
+
+        .result-title {
+            margin-bottom: 20px;
+        }
+
+        #resultCount {
+            color: #6847f5;
+            margin-top: 7px;
+        }
+
+        /* GRID */
+
+        .internship-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        /* CARD */
+
+        .internship-card {
+            background: white;
+            padding: 23px;
+            border-radius: 15px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+
+        .company {
+            color: #6847f5;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .internship-card h3 {
+            margin-bottom: 14px;
+            font-size: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background: #f0edff;
+            color: #6847f5;
+            padding: 6px 9px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .description {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .salary {
+            color: #07834f;
+            font-weight: bold;
+            margin-bottom: 17px;
+        }
+
+        /* BUTTONS */
+
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            background: #6847f5;
+            color: white;
+            padding: 11px;
+            border-radius: 7px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .save-btn {
+            width: 45px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 21px;
+        }
+
+        .save-btn.saved {
+            color: #ff3b72;
+            background: #fff0f5;
+        }
+
+        .save-btn:hover {
+            border-color: #6847f5;
+        }
+
+        /* NO RESULTS */
+
+        #noResults {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            background: white;
+            border-radius: 12px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 60px;
+            padding: 30px;
+            text-align: center;
+            background: #181526;
+            color: #aaa;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .internship-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 15px 5%;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            nav div:last-child {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            nav a {
+                margin-left: 5px;
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .internship-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                max-width: 94%;
+            }
+
+            .card-buttons {
+                flex-direction: row;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            InternHub
+        </div>
+
+        <div>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="internships.html">
+                Internships
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a
+                href="signup.html"
+                class="signup"
+            >
+                Sign Up
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Find Your Perfect Internship
+        </h1>
+
+        <p>
+            Explore internships from top companies and start building your career.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+
+        <!-- FILTERS -->
+
+        <div class="filter-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                class="search"
+                placeholder="🔎 Search internships, companies or skills..."
+            >
+
+            <div class="filters">
+
+                <select id="fieldFilter">
+
+                    <option value="">
+                        All Fields
+                    </option>
+
+                    <option value="Software Development">
+                        Software Development
+                    </option>
+
+                    <option value="Data Science">
+                        Data Science
+                    </option>
+
+                    <option value="AI / ML">
+                        AI / ML
+                    </option>
+
+                    <option value="Web Development">
+                        Web Development
+                    </option>
+
+                    <option value="Cybersecurity">
+                        Cybersecurity
+                    </option>
+
+                </select>
+
+
+                <select id="locationFilter">
+
+                    <option value="">
+                        All Locations
+                    </option>
+
+                    <option value="Remote">
+                        Remote
+                    </option>
+
+                    <option value="Hyderabad">
+                        Hyderabad
+                    </option>
+
+                    <option value="Bengaluru">
+                        Bengaluru
+                    </option>
+
+                    <option value="Pune">
+                        Pune
+                    </option>
+
+                </select>
+
+
+                <select id="modeFilter">
+
+                    <option value="">
+                        All Work Modes
+                    </option>
+
+                    <option value="Remote">
+                        Remote
+                    </option>
+
+                    <option value="Hybrid">
+                        Hybrid
+                    </option>
+
+                    <option value="Onsite">
+                        Onsite
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div class="result-title">
+
+            <h2>
+                Latest Internships
+            </h2>
+
+            <p id="resultCount">
+                6 internships found
+            </p>
+
+        </div>
+
+
+        <!-- INTERNSHIPS -->
+
+        <div
+            class="internship-grid"
+            id="internshipGrid"
+        >
+
+
+            <!-- 1 -->
+
+            <div
+                class="internship-card"
+                data-field="Software Development"
+                data-location="Remote"
+                data-mode="Remote"
+                data-title="Software Development Intern"
+                data-company="TechNova"
+                data-pay="₹20,000 / month"
+                data-duration="3 months"
+                data-skills="Java • SQL • Git"
+            >
+
+                <div class="company">
+                    TechNova
+                </div>
+
+                <h3>
+                    Software Development Intern
+                </h3>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Software Development
+                    </span>
+
+                    <span class="tag">
+                        Remote
+                    </span>
+
+                    <span class="tag">
+                        3 Months
+                    </span>
+
+                </div>
+
+                <p class="description">
+                    Work with experienced developers and build real-world software projects.
+                </p>
+
+                <div class="salary">
+                    💰 ₹20,000 / month
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="internship-details.html"
+                        class="view-btn"
+                        onclick="selectInternship(this)"
+                    >
+                        View & Apply
+                    </a>
+
+                    <button
+                        class="save-btn"
+                        onclick="saveInternship(this)"
+                        title="Save Internship"
+                    >
+                        ♡
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2 -->
+
+            <div
+                class="internship-card"
+                data-field="Data Science"
+                data-location="Bengaluru"
+                data-mode="Hybrid"
+                data-title="Data Analyst Intern"
+                data-company="Insight Labs"
+                data-pay="₹18,000 / month"
+                data-duration="3 months"
+                data-skills="Python • Excel • SQL"
+            >
+
+                <div class="company">
+                    Insight Labs
+                </div>
+
+                <h3>
+                    Data Analyst Intern
+                </h3>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Data Science
+                    </span>
+
+                    <span class="tag">
+                        Bengaluru
+                    </span>
+
+                    <span class="tag">
+                        Hybrid
+                    </span>
+
+                </div>
+
+                <p class="description">
+                    Analyze datasets and create useful insights using Python and SQL.
+                </p>
+
+                <div class="salary">
+                    💰 ₹18,000 / month
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="internship-details.html"
+                        class="view-btn"
+                        onclick="selectInternship(this)"
+                    >
+                        View & Apply
+                    </a>
+
+                    <button
+                        class="save-btn"
+                        onclick="saveInternship(this)"
+                    >
+                        ♡
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- 3 -->
+
+            <div
+                class="internship-card"
+                data-field="AI / ML"
+                data-location="Hyderabad"
+                data-mode="Onsite"
+                data-title="AI / ML Intern"
+                data-company="NeuralWorks"
+                data-pay="₹25,000 / month"
+                data-duration="6 months"
+                data-skills="Python • Machine Learning • AI"
+            >
+
+                <div class="company">
+                    NeuralWorks
+                </div>
+
+                <h3>
+                    AI / ML Intern
+                </h3>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        AI / ML
+                    </span>
+
+                    <span class="tag">
+                        Hyderabad
+                    </span>
+
+                    <span class="tag">
+                        Onsite
+                    </span>
+
+                </div>
+
+                <p class="description">
+                    Learn machine learning techniques and work on practical AI projects.
+                </p>
+
+                <div class="salary">
+                    💰 ₹25,000 / month
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="internship-details.html"
+                        class="view-btn"
+                        onclick="selectInternship(this)"
+                    >
+                        View & Apply
+                    </a>
+
+                    <button
+                        class="save-btn"
+                        onclick="saveInternship(this)"
+                    >
+                        ♡
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- 4 -->
+
+            <div
+                class="internship-card"
+                data-field="Web Development"
+                data-location="Remote"
+                data-mode="Remote"
+                data-title="Web Developer Intern"
+                data-company="PixelCraft"
+                data-pay="₹15,000 / month"
+                data-duration="3 months"
+                data-skills="HTML • CSS • JavaScript"
+            >
+
+                <div class="company">
+                    PixelCraft
+                </div>
+
+                <h3>
+                    Web Developer Intern
+                </h3>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Web Development
+                    </span>
+
+                    <span class="tag">
+                        Remote
+                    </span>
+
+                    <span class="tag">
+                        3 Months
+                    </span>
+
+                </div>
+
+                <p class="description">
+                    Build responsive websites and learn modern web development.
+                </p>
+
+                <div class="salary">
+                    💰 ₹15,000 / month
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="internship-details.html"
+                        class="view-btn"
+                        onclick="selectInternship(this)"
+                    >
+                        View & Apply
+                    </a>
+
+                    <button
+                        class="save-btn"
+                        onclick="saveInternship(this)"
+                    >
+                        ♡
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- 5 -->
+
+            <div
+                class="internship-card"
+                data-field="Cybersecurity"
+                data-location="Pune"
+                data-mode="Onsite"
+                data-title="Cybersecurity Intern"
+                data-company="SecureTech"
+                data-pay="₹16,000 / month"
+                data-duration="4 months"
+                data-skills="Networking • Linux • Security"
+            >
+
+                <div class="company">
+                    SecureTech
+                </div>
+
+                <h3>
+                    Cybersecurity Intern
+                </h3>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Cybersecurity
+                    </span>
+
+                    <span class="tag">
+                        Pune
+                    </span>
+
+                    <span class="tag">
+                        Onsite
+                    </span>
+
+                </div>
+
+                <p class="description">
+                    Learn cybersecurity basics and work with security tools.
+                </p>
+
+                <div class="salary">
+                    💰 ₹16,000 / month
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="internship-details.html"
+                        class="view-btn"
+                        onclick="selectInternship(this)"
+                    >
+                        View & Apply
+                    </a>
+
+                    <button
+                        class="save-btn"
+                        onclick="saveInternship(this)"
+                    >
+                        ♡
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- 6 -->
+
+            <div
+                class="internship-card"
+                data-field="Software Development"
+                data-location="Hyderabad"
+                data-mode="Hybrid"
+                data-title="Java Developer Intern"
+                data-company="CodeWorks"
+                data-pay="₹22,000 / month"
+                data-duration="4 months"
+                data-skills="Java • Spring Boot • SQL"
+            >
+
+                <div class="company">
+                    CodeWorks
+                </div>
+
+                <h3>
+                    Java Developer Intern
+                </h3>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Software Development
+                    </span>
+
+                    <span class="tag">
+                        Hyderabad
+                    </span>
+
+                    <span class="tag">
+                        Hybrid
+                    </span>
+
+                </div>
+
+                <p class="description">
+                    Develop Java applications and learn backend development.
+                </p>
+
+                <div class="salary">
+                    💰 ₹22,000 / month
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="internship-details.html"
+                        class="view-btn"
+                        onclick="selectInternship(this)"
+                    >
+                        View & Apply
+                    </a>
+
+                    <button
+                        class="save-btn"
+                        onclick="saveInternship(this)"
+                    >
+                        ♡
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- NO RESULTS -->
+
+        <div id="noResults">
+
+            <h3>
+                No internships found
+            </h3>
+
+            <p style="margin-top:8px;">
+                Try changing your search or filters.
+            </p>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 InternHub
+        </p>
+
+        <p style="margin-top:8px;">
+            Learn • Apply • Grow
+        </p>
+
+    </footer>
+
+
+    <script>
+
+
+        /* =========================
+           SEARCH + FILTER
+           ========================= */
+
+        function filterInternships() {
+
+            let searchText =
+                document
+                    .getElementById("searchInput")
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            let selectedField =
+                document
+                    .getElementById("fieldFilter")
+                    .value;
+
+
+            let selectedLocation =
+                document
+                    .getElementById("locationFilter")
+                    .value;
+
+
+            let selectedMode =
+                document
+                    .getElementById("modeFilter")
+                    .value;
+
+
+            let cards =
+                document.querySelectorAll(
+                    ".internship-card"
+                );
+
+
+            let visibleCount = 0;
+
+
+            cards.forEach(
+                function(card) {
+
+                    let title =
+                        card.dataset.title
+                            .toLowerCase();
+
+                    let company =
+                        card.dataset.company
+                            .toLowerCase();
+
+                    let field =
+                        card.dataset.field;
+
+                    let location =
+                        card.dataset.location;
+
+                    let mode =
+                        card.dataset.mode;
+
+
+                    let matchesSearch =
+                        title.includes(searchText) ||
+                        company.includes(searchText) ||
+                        card.textContent
+                            .toLowerCase()
+                            .includes(searchText);
+
+
+                    let matchesField =
+                        selectedField === "" ||
+                        field === selectedField;
+
+
+                    let matchesLocation =
+                        selectedLocation === "" ||
+                        location === selectedLocation;
+
+
+                    let matchesMode =
+                        selectedMode === "" ||
+                        mode === selectedMode;
+
+
+                    if (
+                        matchesSearch &&
+                        matchesField &&
+                        matchesLocation &&
+                        matchesMode
+                    ) {
+
+                        card.style.display =
+                            "block";
+
+                        visibleCount++;
+
+                    } else {
+
+                        card.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+
+            document.getElementById(
+                "resultCount"
+            ).textContent =
+                visibleCount +
+                " internships found";
+
+
+            document.getElementById(
+                "noResults"
+            ).style.display =
+                visibleCount === 0
+                    ? "block"
+                    : "none";
+
+        }
+
+
+        /* =========================
+           SELECT INTERNSHIP
+           ========================= */
+
+        function selectInternship(button) {
+
+            let card =
+                button.closest(
+                    ".internship-card"
+                );
+
+
+            let internship = {
+
+                title:
+                    card.dataset.title,
+
+                company:
+                    card.dataset.company,
+
+                field:
+                    card.dataset.field,
+
+                location:
+                    card.dataset.location,
+
+                mode:
+                    card.dataset.mode,
+
+                pay:
+                    card.dataset.pay,
+
+                duration:
+                    card.dataset.duration,
+
+                skills:
+                    card.dataset.skills
+
+            };
+
+
+            localStorage.setItem(
+                "selectedInternship",
+                JSON.stringify(
+                    internship
+                )
+            );
+
+        }
+
+
+        /* =========================
+           SAVE INTERNSHIP
+           ========================= */
+
+        function saveInternship(button) {
+
+            let card =
+                button.closest(
+                    ".internship-card"
+                );
+
+
+            let internship = {
+
+                title:
+                    card.dataset.title,
+
+                company:
+                    card.dataset.company,
+
+                field:
+                    card.dataset.field,
+
+                location:
+                    card.dataset.location,
+
+                mode:
+                    card.dataset.mode,
+
+                pay:
+                    card.dataset.pay,
+
+                duration:
+                    card.dataset.duration,
+
+                skills:
+                    card.dataset.skills
+
+            };
+
+
+            let saved =
+                JSON.parse(
+                    localStorage.getItem(
+                        "savedInternships"
+                    ) || "[]"
+                );
+
+
+            let alreadySaved =
+                saved.some(
+                    function(item) {
+
+                        return item.title ===
+                            internship.title &&
+                            item.company ===
+                            internship.company;
+
+                    }
+                );
+
+
+            if (alreadySaved) {
+
+                /* REMOVE */
+
+                saved =
+                    saved.filter(
+                        function(item) {
+
+                            return !(
+                                item.title ===
+                                internship.title &&
+                                item.company ===
+                                internship.company
+                            );
+
+                        }
+                    );
+
+
+                button.textContent = "♡";
+
+                button.classList.remove(
+                    "saved"
+                );
+
+            } else {
+
+                /* SAVE */
+
+                saved.push(
+                    internship
+                );
+
+
+                button.textContent = "♥";
+
+                button.classList.add(
+                    "saved"
+                );
+
+            }
+
+
+            localStorage.setItem(
+                "savedInternships",
+                JSON.stringify(
+                    saved
+                )
+            );
+
+
+            /* UPDATE DASHBOARD COUNT */
+
+            console.log(
+                "Saved internships:",
+                saved.length
+            );
+
+        }
+
+
+        /* =========================
+           LOAD SAVED STATE
+           ========================= */
+
+        function loadSavedState() {
+
+            let saved =
+                JSON.parse(
+                    localStorage.getItem(
+                        "savedInternships"
+                    ) || "[]"
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".internship-card"
+                )
+                .forEach(
+                    function(card) {
+
+                        let title =
+                            card.dataset.title;
+
+                        let company =
+                            card.dataset.company;
+
+
+                        let isSaved =
+                            saved.some(
+                                function(item) {
+
+                                    return (
+                                        item.title === title &&
+                                        item.company === company
+                                    );
+
+                                }
+                            );
+
+
+                        let button =
+                            card.querySelector(
+                                ".save-btn"
+                            );
+
+
+                        if (isSaved) {
+
+                            button.textContent =
+                                "♥";
+
+                            button.classList.add(
+                                "saved"
+                            );
+
+                        }
+
+                    }
+                );
+
+        }
+
+
+        /* =========================
+           EVENT LISTENERS
+           ========================= */
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                filterInternships
+            );
+
+
+        document
+            .getElementById(
+                "fieldFilter"
+            )
+            .addEventListener(
+                "change",
+                filterInternships
+            );
+
+
+        document
+            .getElementById(
+                "locationFilter"
+            )
+            .addEventListener(
+                "change",
+                filterInternships
+            );
+
+
+        document
+            .getElementById(
+                "modeFilter"
+            )
+            .addEventListener(
+                "change",
+                filterInternships
+            );
+
+
+        /* START */
+
+        loadSavedState();
+
+        filterInternships();
+
+
+    </script>
+
+
+</body>
+
+</html>
